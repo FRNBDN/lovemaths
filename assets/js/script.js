@@ -1,16 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let buttons = document.getElementsByTagName("button");
+  let buttons = document.getElementsByTagName("button");
 
-    for (let button of buttons) {
+  for (let button of buttons) {
     button.addEventListener("click", function () {
-            if (this.getAttribute("data-type") === "submit") {
-                alert("Clicked Submit!");
-            } else {
+      if (this.getAttribute("data-type") === "submit") {
+        alert("Clicked Submit!");
+      } else {
         let operatorType = this.getAttribute("data-type");
         runApp(operatorType);
-            }
-        });
-    }
+      }
+    });
+  }
 
   runApp("addition");
 });
@@ -29,29 +29,23 @@ function runApp() {
   } else {
     alert(`Unknown operator type: ${operatorType}`);
     throw `Unknown operator type: ${operatorType}. Aborting!`;
-}
-}
-
-function calculateCorrectAnswer() {
-
+  }
 }
 
-function incrementScore() {
+function checkAnswer() {}
 
-}
+function calculateCorrectAnswer() {}
 
-function incrementWrongAnswer() {
+function incrementScore() {}
 
-}
+function incrementWrongAnswer(operand1, operand2) {}
 
 function displayAdditionQuestion() {
-
+  document.getElementById("operand1").textContent = operand1;
+  document.getElementById("operand2").textContent = operand2;
+  document.getElementById("operator").textContent = "+";
 }
 
-function displaySubtractQuestion() {
+function displaySubtractQuestion() {}
 
-}
-
-function displayMultiplyQuestion() {
-    
-}
+function displayMultiplyQuestion() {}
