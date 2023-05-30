@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   for (let button of buttons) {
     button.addEventListener("click", function () {
       if (this.getAttribute("data-type") === "submit") {
-        alert("Clicked Submit!");
+        checkAnswer();
       } else {
         let operatorType = this.getAttribute("data-type");
         runApp(operatorType);
@@ -31,8 +31,27 @@ function runApp(operatorType) {
     throw `Unknown operator type: ${operatorType}. Aborting!`;
   }
 }
+/**
+ * Checks the answer agaist the first element in
+ * the returned calculateCorrectAnswer array
+ */
+function checkAnswer() {
+  let userAnswer = parseInt(document.getElementById("answer-box").value);
+  let calculatedAnswer = calculateCorrectAnswer();
+  let isCorrect = userAnswer === calculatedAnswer[0];
 
-function checkAnswer() {}
+  if (isCorrect) {
+    alert("Correct Answer!");
+    document.getElementById("answer-box").value = "";
+  } else {
+    alert(
+      `You answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}!`
+    );
+    document.getElementById("answer-box").value = "";
+  }
+  // starts another round with the same operator
+  runApp(calculatedAnswer[1]);
+}
 /**
  * Gets the operands (the numbers) and the operator (plus, minus etc)
  * directly from the dom, and returns the correct answer.
